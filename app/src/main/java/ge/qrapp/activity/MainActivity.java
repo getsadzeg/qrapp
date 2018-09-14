@@ -1,11 +1,12 @@
-package ge.uplift.activity;
+package ge.qrapp.activity;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import ge.uplift.R;
+import ge.qrapp.R;
 
 public class MainActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

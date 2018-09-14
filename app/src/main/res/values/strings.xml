@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">Uplift</string>
+    <string name="app_name">QRAPP</string>
+    <string name="geo_auth">ავტორიზაცია</string>
+    <string name="geo_reg">რეგისტრაცია</string>
+    <string name="greeting">მოგესალმებით!</string>
+    <string name="ease">დარეგისტრირდი და გაიმარტივე გადახდები QRAPP-ით</string>
+    <string name="name">სახელი</string>
+
 </resources>

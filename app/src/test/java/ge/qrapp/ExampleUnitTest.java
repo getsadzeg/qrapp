@@ -1,4 +1,4 @@
-package ge.uplift;
+package ge.qrapp;
 
 import org.junit.Test;
 
