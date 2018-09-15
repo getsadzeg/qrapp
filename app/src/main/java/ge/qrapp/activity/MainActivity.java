@@ -16,7 +16,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import ge.qrapp.R;
 import ge.qrapp.model.UserDetails;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawer;
     TextView header;
@@ -38,27 +38,11 @@ public class MainActivity extends AppCompatActivity {
         
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navView = findViewById(R.id.nav_view);
+        navView.setNavigationItemSelectedListener(this);
         header = navView.getHeaderView(0).findViewById(R.id.nav_header);
         header.setText(user.Name + " " + user.LastName);
+        navView.bringToFront();
 
-
-        navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-               /*  menuItem.setChecked(true);
-                drawer.closeDrawers(); */
-               switch(menuItem.getItemId()) {
-                   case R.id.receivepayment:
-                       startActivity(new Intent(MainActivity.this, ReceiveActivity.class));
-                       break;
-                   case R.id.sendpayment:
-                       startActivity(new Intent(MainActivity.this, DecoderActivity.class));
-                       break;
-               }
-                drawer.closeDrawers();
-                return true;
-            }
-        });
     }
 
     @Override
@@ -69,5 +53,19 @@ public class MainActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch(menuItem.getItemId()) {
+            case R.id.receivepayment:
+                startActivity(new Intent(MainActivity.this, ReceiveActivity.class));
+                break;
+            case R.id.sendpayment:
+                startActivity(new Intent(MainActivity.this, DecoderActivity.class));
+                break;
+        }
+        drawer.closeDrawers();
+        return true;
     }
 }
