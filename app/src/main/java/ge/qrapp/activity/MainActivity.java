@@ -13,7 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import ge.qrapp.R;
+import ge.qrapp.adapter.TransactionAdapter;
 import ge.qrapp.model.TransactionsSummary;
 import ge.qrapp.model.UserDetails;
 import ge.qrapp.service.TransactionAPI;
@@ -25,8 +28,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     DrawerLayout drawer;
     TextView header;
-    UserDetails currentUser;
-    String fullName = "";
+
+    public static TransactionsSummary getTransactionsSummary() {
+        return transactionsSummary;
+    }
+
+    public static TransactionsSummary transactionsSummary;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +59,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String validId = SessionId.subSequence(0, SessionId.indexOf('.')).toString();
         System.out.println("VALID " + validId);
         showTransactions(validId);
+
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        LinearLayoutManager manager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        recyclerView.setLayoutManager(manager);
+        recyclerView.setHasFixedSize(true);
+        TransactionAdapter adapter = new TransactionAdapter();
+        recyclerView.setAdapter(adapter);
+        //getTransactionsSummary();
     }
 
 
@@ -65,7 +81,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 System.out.println("response failed");
                                 System.out.println(response.errorBody().string());
                             }
-                            else System.out.println("TRANSACTION RESPONSE " + response.body().toString());
+                            else {
+                                System.out.println("TRANSACTION RESPONSE " + response.body().toString());
+                                transactionsSummary = response.body();
+                            }
                         }
                         catch(Exception e) {
                             System.out.println("EXCEPTION THROWN " + e.getMessage());

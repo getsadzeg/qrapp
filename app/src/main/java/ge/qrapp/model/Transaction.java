@@ -19,6 +19,42 @@ public class Transaction {
     String EntryGroupName;
     int EntryGroupNameId;
     String ServiceId;
+
+    public String getSrcAcc() {
+        return SrcAcc;
+    }
+
+    public void setSrcAcc(String srcAcc) {
+        SrcAcc = srcAcc;
+    }
+
+    public String getDstAcc() {
+
+        return DstAcc;
+    }
+
+    public void setDstAcc(String dstAcc) {
+        DstAcc = dstAcc;
+    }
+
+    public String getCcy() {
+
+        return Ccy;
+    }
+
+    public void setCcy(String ccy) {
+        Ccy = ccy;
+    }
+
+    public double getAmount() {
+
+        return Amount;
+    }
+
+    public void setAmount(double amount) {
+        Amount = amount;
+    }
+
     long PostDate;
 
     @Override

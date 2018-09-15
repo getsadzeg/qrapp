@@ -1,11 +1,11 @@
 package ge.qrapp.model;
 
-import java.util.Collection;
+import java.util.List;
 
 public class TransactionsSummary {
-    double OutcomeSum;
-    double IncomeSum;
-    Collection<Transaction> MyOperations;
+    public double OutcomeSum;
+    public double IncomeSum;
+    public List<Transaction> MyOperations;
 
     @Override
     public String toString() {
