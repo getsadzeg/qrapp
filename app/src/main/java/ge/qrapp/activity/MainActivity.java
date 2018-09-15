@@ -1,11 +1,13 @@
 package ge.qrapp.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 import ge.qrapp.R;
+import ge.qrapp.decoder.DecoderActivity;
 import ge.qrapp.service.AuthAPI;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,5 +27,6 @@ public class MainActivity extends AppCompatActivity {
     public void AuthOnClick(View view) {
         AuthAPI authapi = new AuthAPI();
         authapi.auth(username.getText().toString(), password.getText().toString());
+        startActivity(new Intent(this, DecoderActivity.class));
     }
 }
