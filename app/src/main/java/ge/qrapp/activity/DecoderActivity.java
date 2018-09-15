@@ -1,4 +1,4 @@
-package ge.qrapp.decoder;
+package ge.qrapp.activity;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import ge.qrapp.R;
+import ge.qrapp.decoder.PointsOverlayView;
 
 public class DecoderActivity extends AppCompatActivity
     implements ActivityCompat.OnRequestPermissionsResultCallback, OnQRCodeReadListener {

@@ -1,6 +1,8 @@
 package ge.qrapp.model;
 
-public class UserDetails {
+import java.io.Serializable;
+
+public class UserDetails implements Serializable {
     public int UserId;
     public String Username;
     public String Name;
