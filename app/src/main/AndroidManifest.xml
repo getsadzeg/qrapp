@@ -28,7 +28,8 @@
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/title_activity_main" />
-        <activity android:name=".activity.ReceiveActivity"></activity>
+        <activity android:name=".activity.ReceiveActivity" />
+        <activity android:name=".activity.PaymentActivity"></activity>
     </application>
 
 </manifest>

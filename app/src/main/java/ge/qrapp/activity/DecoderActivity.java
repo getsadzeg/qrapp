@@ -1,6 +1,7 @@
 package ge.qrapp.activity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.PointF;
 import android.os.Bundle;
@@ -83,8 +84,11 @@ public class DecoderActivity extends AppCompatActivity
   // "text" : the text encoded in QR
   // "points" : points where QR control points are placed
   @Override public void onQRCodeRead(String text, PointF[] points) {
-    resultTextView.setText(text);
+      //resultTextView.setText(text);
     pointsOverlayView.setPoints(points);
+    Intent intent = new Intent(DecoderActivity.this, PaymentActivity.class);
+    intent.putExtra("qr", text);
+    startActivity(intent);
   }
 
   private void requestCameraPermission() {

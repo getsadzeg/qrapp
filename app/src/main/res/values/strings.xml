@@ -22,5 +22,6 @@
     <string name="send">გადახდა</string>
     <string name="receive">მიღება</string>
     <string name="menu">Menu</string>
+    <string name="havetopay">გადასახდელია</string>
 
 </resources>
