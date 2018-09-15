@@ -32,11 +32,11 @@ public class AuthActivity extends AppCompatActivity {
     public void AuthOnClick(View view) {
         AuthAPI authapi = new AuthAPI();
 
-        authapi.getAuthService().auth(username.getText().toString(), password.getText().toString()).enqueue(new Callback<SessionInfo>() {
+        authapi.getAuthAPIService().auth(username.getText().toString(), password.getText().toString()).enqueue(new Callback<SessionInfo>() {
             @Override
             public void onResponse(Call<SessionInfo> call, Response<SessionInfo> response) {
                 try {
-                    if(!response.isSuccessful()) System.out.println("FAILED");
+                    if(!response.isSuccessful()) System.out.println("response failed");
                     System.out.println(response.body().toString());
                     sessionInfo = response.body();
                     //System.out.println(sessionInfo + "print 1");
@@ -45,6 +45,7 @@ public class AuthActivity extends AppCompatActivity {
                     System.out.println(currentUser.toString() + "CURRENT USER");
                     Intent intent = new Intent(AuthActivity.this, MainActivity.class);
                     intent.putExtra("UserDetails", currentUser);
+                    intent.putExtra("SessionId", sessionInfo.SessionId);
                     startActivity(intent);
                 }
                 catch(Exception e) {

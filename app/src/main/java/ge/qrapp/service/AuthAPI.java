@@ -1,28 +1,26 @@
 package ge.qrapp.service;
 
-import ge.qrapp.model.SessionInfo;
 import ge.qrapp.model.UserDetails;
 import ge.qrapp.util.Constants;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AuthAPI {
-    private AuthService authService;
-    SessionInfo sessionInfo;
+    private AuthAPIService authAPIService;
     public static UserDetails user = null;
 
     public AuthAPI() {
         Retrofit retrofit = new Retrofit.Builder().baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        setAuthService(retrofit.create(AuthService.class));
+        setAuthAPIService(retrofit.create(AuthAPIService.class));
     }
 
-    public AuthService getAuthService() {
-        return authService;
+    public AuthAPIService getAuthAPIService() {
+        return authAPIService;
     }
 
-    public void setAuthService(AuthService authService) {
-        this.authService = authService;
+    public void setAuthAPIService(AuthAPIService authAPIService) {
+        this.authAPIService = authAPIService;
     }
 }

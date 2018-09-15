@@ -14,7 +14,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import ge.qrapp.R;
+import ge.qrapp.model.TransactionsSummary;
 import ge.qrapp.model.UserDetails;
+import ge.qrapp.service.TransactionAPI;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -42,7 +47,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         header = navView.getHeaderView(0).findViewById(R.id.nav_header);
         header.setText(user.Name + " " + user.LastName);
         navView.bringToFront();
+        String SessionId = i.getStringExtra("SessionId");
+        String validId = SessionId.subSequence(0, SessionId.indexOf('.')).toString();
+        System.out.println("VALID " + validId);
+        showTransactions(validId);
+    }
 
+
+    public void showTransactions(String SessionId) {
+        TransactionAPI transactionAPI = new TransactionAPI();
+        transactionAPI.getTransactionAPIService().getTransactions(SessionId)
+                .enqueue(new Callback<TransactionsSummary>() {
+                    @Override
+                    public void onResponse(Call<TransactionsSummary> call, Response<TransactionsSummary> response) {
+                        try {
+                            if (!response.isSuccessful()) {
+                                System.out.println("response failed");
+                                System.out.println(response.errorBody().string());
+                            }
+                            else System.out.println("TRANSACTION RESPONSE " + response.body().toString());
+                        }
+                        catch(Exception e) {
+                            System.out.println("EXCEPTION THROWN " + e.getMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<TransactionsSummary> call, Throwable t) {
+                        System.out.println("ON FAILURE " + t.getMessage());
+                    }
+                });
     }
 
     @Override
