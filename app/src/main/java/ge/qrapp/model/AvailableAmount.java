@@ -6,9 +6,6 @@ public class AvailableAmount {
 
     @Override
     public String toString() {
-        return "AvailableAmount{" +
-                "Amount=" + Amount +
-                ", Currency='" + Currency + '\'' +
-                '}';
+        return Amount + Currency + " ,";
     }
 }

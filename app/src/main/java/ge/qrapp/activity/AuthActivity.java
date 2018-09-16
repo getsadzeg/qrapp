@@ -45,6 +45,7 @@ public class AuthActivity extends AppCompatActivity {
                     System.out.println(currentUser.toString() + "CURRENT USER");
                     Intent intent = new Intent(AuthActivity.this, MainActivity.class);
                     intent.putExtra("UserDetails", currentUser);
+
                     intent.putExtra("SessionId", sessionInfo.SessionId);
                     startActivity(intent);
                 }

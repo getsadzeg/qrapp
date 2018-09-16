@@ -28,13 +28,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     DrawerLayout drawer;
     TextView header;
-
-    public static TransactionsSummary getTransactionsSummary() {
-        return transactionsSummary;
-    }
+    String validId;
 
     public static TransactionsSummary transactionsSummary;
     private RecyclerView recyclerView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         header.setText(user.Name + " " + user.LastName);
         navView.bringToFront();
         String SessionId = i.getStringExtra("SessionId");
-        String validId = SessionId.subSequence(0, SessionId.indexOf('.')).toString();
+        validId = SessionId.subSequence(0, SessionId.indexOf('.')).toString();
         System.out.println("VALID " + validId);
         showTransactions(validId);
 
@@ -116,6 +114,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.sendpayment:
                 startActivity(new Intent(MainActivity.this, DecoderActivity.class));
+                break;
+            case R.id.seeaccounts:
+                Intent i = new Intent(MainActivity.this, AccountsActivity.class);
+                i.putExtra("SessionId", validId);
+                startActivity(i);
                 break;
         }
         drawer.closeDrawers();
