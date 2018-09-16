@@ -59,6 +59,7 @@ public class AccountsActivity extends AppCompatActivity {
                         String realAmount = preferences.getString("amount", "0");
                         System.out.println("FROM ACC ACT; AMOUNT IS " + realAmount);
                         adapter.setAccounts(response.body());
+                        adapter.setAmount(Integer.valueOf(realAmount));
                         Statics.MockUser.getAvailableAmounts().get(0).increaseAmount(Integer.valueOf(realAmount));
                         //System.out.println("NOW AMOUNT IS " + accounts.get(0).getAvailableAmounts().get(0).getAmount());
                     }

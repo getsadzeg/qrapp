@@ -30,7 +30,8 @@
             android:label="@string/title_activity_main" />
         <activity android:name=".activity.ReceiveActivity" />
         <activity android:name=".activity.PaymentActivity" />
-        <activity android:name=".activity.AccountsActivity"></activity>
+        <activity android:name=".activity.AccountsActivity" />
+        <activity android:name=".activity.MoneySubmissionActivity"></activity>
     </application>
 
 </manifest>

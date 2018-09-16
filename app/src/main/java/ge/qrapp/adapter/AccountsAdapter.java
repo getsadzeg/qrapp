@@ -20,6 +20,14 @@ public class AccountsAdapter extends RecyclerView.Adapter<AccountsAdapter.Accoun
         this.accounts = accounts;
         notifyDataSetChanged();
     }
+    
+    public void setAmount(double amount) {
+        this.accounts.get(0).getAvailableAmounts().get(0).decreaseAmount(amount);
+    }
+
+    public List<Account> getAccounts() {
+        return accounts;
+    }
 
     public List<Account> accounts = new ArrayList<>();
 

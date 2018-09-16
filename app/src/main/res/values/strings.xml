@@ -24,5 +24,8 @@
     <string name="menu">Menu</string>
     <string name="havetopay">გადასახდელია</string>
     <string name="seeaccounts">ანგარიშების ნახვა</string>
+    <string name="submitmoney">შეიყვანეთ თანხა</string>
+    <string name="generate">კოდის დაგენერირება</string>
+    <string name="cancel">გაუქმება</string>
 
 </resources>

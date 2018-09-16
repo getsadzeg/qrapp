@@ -87,8 +87,8 @@ public class DecoderActivity extends AppCompatActivity
       //resultTextView.setText(text);
     pointsOverlayView.setPoints(points);
     Intent intent = new Intent(DecoderActivity.this, PaymentActivity.class);
-    String mocktext = "5GEL-GE777";
-    intent.putExtra("qrdata", mocktext); //don't forget to change this
+    //String mocktext = "5GEL-GE777";
+    intent.putExtra("qrdata", text);
     startActivity(intent);
   }
 

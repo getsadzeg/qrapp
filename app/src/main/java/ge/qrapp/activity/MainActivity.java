@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch(menuItem.getItemId()) {
             case R.id.receivepayment:
-                startActivity(new Intent(MainActivity.this, ReceiveActivity.class));
+                startActivity(new Intent(MainActivity.this, MoneySubmissionActivity.class));
                 break;
             case R.id.sendpayment:
                 startActivity(new Intent(MainActivity.this, DecoderActivity.class));
