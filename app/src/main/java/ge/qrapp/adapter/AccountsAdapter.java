@@ -29,6 +29,7 @@ public class AccountsAdapter extends RecyclerView.Adapter<AccountsAdapter.Accoun
         String acctName = accounts.get(position).getAcctName();
         String acctNo = accounts.get(position).getPrintAcctNo();
         String availableAmounts = accounts.get(position).getAvailableAmounts().toString();
+
         String ccy = accounts.get(position).getCcy();
         holder.account.setText(acctName + ", " + acctNo);
         holder.availableAmounts.append(availableAmounts);

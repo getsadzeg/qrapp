@@ -1,7 +1,9 @@
 package ge.qrapp.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -28,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     DrawerLayout drawer;
     TextView header;
-    String validId;
+    static String validId;
 
     public static TransactionsSummary transactionsSummary;
     private RecyclerView recyclerView;
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         Intent i = getIntent();
 
         UserDetails user = (UserDetails) i.getSerializableExtra("UserDetails");
@@ -116,9 +119,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(new Intent(MainActivity.this, DecoderActivity.class));
                 break;
             case R.id.seeaccounts:
-                Intent i = new Intent(MainActivity.this, AccountsActivity.class);
-                i.putExtra("SessionId", validId);
-                startActivity(i);
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("SessionId", validId);
+                editor.apply();
+                startActivity(new Intent(MainActivity.this, AccountsActivity.class));
                 break;
         }
         drawer.closeDrawers();

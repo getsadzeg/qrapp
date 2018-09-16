@@ -8,8 +8,10 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import ge.qrapp.R;
 import ge.qrapp.model.SessionInfo;
+import ge.qrapp.model.User;
 import ge.qrapp.model.UserDetails;
 import ge.qrapp.service.AuthAPI;
+import ge.qrapp.util.Session;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -19,6 +21,8 @@ public class AuthActivity extends AppCompatActivity {
     EditText password;
     public static UserDetails currentUser;
     SessionInfo sessionInfo;
+    Session session;
+    User user = new User();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +30,6 @@ public class AuthActivity extends AppCompatActivity {
         setContentView(R.layout.activity_auth);
         username = findViewById(R.id.name);
         password = findViewById(R.id.password);
-
     }
 
     public void AuthOnClick(View view) {
@@ -41,8 +44,11 @@ public class AuthActivity extends AppCompatActivity {
                     sessionInfo = response.body();
                     //System.out.println(sessionInfo + "print 1");
                     currentUser = sessionInfo.UserDetails;
+                    user.setDetails(currentUser);
+                    Session.user = user;
 
                     System.out.println(currentUser.toString() + "CURRENT USER");
+
                     Intent intent = new Intent(AuthActivity.this, MainActivity.class);
                     intent.putExtra("UserDetails", currentUser);
 
@@ -50,7 +56,7 @@ public class AuthActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 catch(Exception e) {
-                    System.out.println("ERROR MESSAGE" + e.getMessage());
+                    System.out.println("ERROR MESSAGE " + e.getMessage());
                     System.out.println("very much of an error");
                 }
             }

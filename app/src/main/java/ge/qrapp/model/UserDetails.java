@@ -10,6 +10,15 @@ public class UserDetails implements Serializable {
     public String PhoneForSms;
     public boolean Active;
 
+    public UserDetails(int userId, String username, String name, String lastName, String phoneForSms, boolean active) {
+        UserId = userId;
+        Username = username;
+        Name = name;
+        LastName = lastName;
+        PhoneForSms = phoneForSms;
+        Active = active;
+    }
+
     @Override
     public String toString() {
         return "UserDetails{" +
