@@ -9,27 +9,33 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import ge.qrapp.R;
-import ge.qrapp.activity.MainActivity;
+import ge.qrapp.model.TransactionsSummary;
 
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder> {
 
+    public void setTransactionsSummary(TransactionsSummary transactionsSummary) {
+        this.transactionsSummary = transactionsSummary;
+        notifyDataSetChanged();
+    }
+
+    public TransactionsSummary transactionsSummary;
+    
     @NonNull
     @Override
     public TransactionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         int layoutIDforListItem = R.layout.transaction_list_item;
         LayoutInflater inflater = LayoutInflater.from(context);
-        boolean shouldAttachToParentImmediately = false;
-        View view = inflater.inflate(layoutIDforListItem, parent, shouldAttachToParentImmediately);
+        View view = inflater.inflate(layoutIDforListItem, parent, false);
         return new TransactionViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull TransactionViewHolder holder, int position) {
-        double amount = MainActivity.transactionsSummary.MyOperations.get(position).getAmount();
-        String currency = MainActivity.transactionsSummary.MyOperations.get(position).getCcy();
-        String dstAcc = MainActivity.transactionsSummary.MyOperations.get(position).getDstAcc();
-        String srcAcc = MainActivity.transactionsSummary.MyOperations.get(position).getSrcAcc();
+        double amount = transactionsSummary.MyOperations.get(position).getAmount();
+        String currency = transactionsSummary.MyOperations.get(position).getCcy();
+        String dstAcc = transactionsSummary.MyOperations.get(position).getDstAcc();
+        String srcAcc = transactionsSummary.MyOperations.get(position).getSrcAcc();
         holder.amount.setText(Double.toString(amount) + " " + currency);
         holder.dstacc.setText(dstAcc);
         holder.srcacc.setText(srcAcc);
@@ -37,13 +43,12 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
     @Override
     public int getItemCount() {
-        if(MainActivity.transactionsSummary == null) return 0;
-        return MainActivity.transactionsSummary.MyOperations.size();
+        if(transactionsSummary == null) return 0;
+        return transactionsSummary.MyOperations.size();
     }
 
     public class TransactionViewHolder extends RecyclerView.ViewHolder {
         TextView amount;
-        TextView currency;
         TextView dstacc;
         TextView srcacc;
 

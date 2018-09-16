@@ -31,8 +31,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawer;
     TextView header;
     static String validId;
-
-    public static TransactionsSummary transactionsSummary;
+    private TransactionAdapter adapter;
     private RecyclerView recyclerView;
 
 
@@ -65,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         LinearLayoutManager manager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(manager);
         recyclerView.setHasFixedSize(true);
-        TransactionAdapter adapter = new TransactionAdapter();
+        adapter = new TransactionAdapter();
         recyclerView.setAdapter(adapter);
         //getTransactionsSummary();
     }
@@ -84,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             }
                             else {
                                 System.out.println("TRANSACTION RESPONSE " + response.body().toString());
-                                transactionsSummary = response.body();
+                                adapter.setTransactionsSummary(response.body());
                             }
                         }
                         catch(Exception e) {

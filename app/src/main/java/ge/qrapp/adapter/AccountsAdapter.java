@@ -6,13 +6,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import ge.qrapp.R;
-
-import static ge.qrapp.activity.AccountsActivity.accounts;
+import ge.qrapp.model.Account;
 
 public class AccountsAdapter extends RecyclerView.Adapter<AccountsAdapter.AccountsViewHolder> {
+
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
+        notifyDataSetChanged();
+    }
+
+    public List<Account> accounts = new ArrayList<>();
+
 
     @NonNull
     @Override
