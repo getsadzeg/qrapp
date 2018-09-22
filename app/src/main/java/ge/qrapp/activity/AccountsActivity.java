@@ -23,7 +23,6 @@ public class AccountsActivity extends AppCompatActivity {
     static AccountAPI accountAPI = new AccountAPI();
     String SessionId;
     private RecyclerView recyclerView;
-    public static String amount;
     static SharedPreferences preferences;
     private AccountsAdapter adapter;
 
@@ -56,12 +55,15 @@ public class AccountsActivity extends AppCompatActivity {
                     }
                     else {
                         System.out.println(response.body().toString());
-                        String realAmount = preferences.getString("amount", "0");
-                        System.out.println("FROM ACC ACT; AMOUNT IS " + realAmount);
+                        String amount = preferences.getString("amount", "0");
+                        System.out.println("FROM ACC ACT; AMOUNT IS " + amount);
                         adapter.setAccounts(response.body());
-                        adapter.setAmount(Integer.valueOf(realAmount));
-                        Statics.MockUser.getAvailableAmounts().get(0).increaseAmount(Integer.valueOf(realAmount));
-                        //System.out.println("NOW AMOUNT IS " + accounts.get(0).getAvailableAmounts().get(0).getAmount());
+                        adapter.decreaseAmount(Integer.valueOf(amount));
+                        System.out.println(adapter.getAccounts().get(0).getAvailableAmounts().get(0).toString());
+                        //adapter.getAccounts().get(0).getAvailableAmounts().get(0).decreaseAmount(Integer.valueOf(amount));
+                        Statics.MockUser.getAvailableAmounts().get(0).increaseAmount(Integer.valueOf(amount));
+                        /* System.out.println("NOW AMOUNT IS " + adapter.getAccounts().get(0).getAvailableAmounts()
+                        .get(0).getAmount()); */
                     }
                 }
                 catch(Exception e) {

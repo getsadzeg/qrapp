@@ -25,7 +25,7 @@ public class ReceiveActivity extends AppCompatActivity {
         imageView = findViewById(R.id.imageview);
         Intent intent = getIntent();
         String money = intent.getStringExtra("money");
-        String qrtext = money + Statics.MockUser.getPrintAcctNo();
+        String qrtext = money + "-" + Statics.MockUser.getPrintAcctNo();
         File file = QRCode.from(qrtext).to(ImageType.JPG).file();
         System.out.println("PATH " + file.getAbsolutePath());
         imageView.setImageBitmap(BitmapFactory.decodeFile(file.getAbsolutePath()));

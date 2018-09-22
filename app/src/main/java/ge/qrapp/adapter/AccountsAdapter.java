@@ -21,7 +21,7 @@ public class AccountsAdapter extends RecyclerView.Adapter<AccountsAdapter.Accoun
         notifyDataSetChanged();
     }
     
-    public void setAmount(double amount) {
+    public void decreaseAmount(double amount) {
         this.accounts.get(0).getAvailableAmounts().get(0).decreaseAmount(amount);
     }
 

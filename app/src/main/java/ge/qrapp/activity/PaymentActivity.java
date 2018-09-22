@@ -25,6 +25,8 @@ public class PaymentActivity extends AppCompatActivity {
 
         Intent paymentIntent = getIntent();
         String text = paymentIntent.getStringExtra("qrdata");
+        System.out.println("TEXT IS " + text);
+        text+=Statics.MockUser.PrintAcctNo;
         amount = text.subSequence(0, text.lastIndexOf('-')).toString();
         acctNo = text.subSequence(text.lastIndexOf('-'), text.length()-1).toString();
 
@@ -33,12 +35,12 @@ public class PaymentActivity extends AppCompatActivity {
     }
 
     public void payOnClick(View view) {
-        String realAmount = amount.subSequence(0, amount.length()-3).toString();
-        //System.out.println("AMOUNT IS " + realAmount);
-        Statics.MockUser.availableAmounts.get(0).increaseAmount(Integer.valueOf(realAmount));
+        //String realAmount = amount.subSequence(0, amount.length()-3).toString();
+        System.out.println("AMOUNT IS " + amount);
+        Statics.MockUser.availableAmounts.get(0).increaseAmount(Integer.valueOf(amount));
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("amount", realAmount);
+        editor.putString("amount", amount);
         editor.apply();
         startActivity(new Intent(PaymentActivity.this, AccountsActivity.class));
        /*
